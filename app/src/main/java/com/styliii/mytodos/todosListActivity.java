@@ -1,5 +1,6 @@
 package com.styliii.mytodos;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -9,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.apache.commons.io.FileUtils;
 
@@ -21,6 +23,7 @@ public class todosListActivity extends ActionBarActivity {
     ArrayList<String> items;
     ArrayAdapter<String> itemsAdapter;
     ListView lvItems;
+    private final int REQUEST_CODE = 20;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +79,21 @@ public class todosListActivity extends ActionBarActivity {
                     }
                 }
         );
+        lvItems.setOnItemClickListener(
+                new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapter, View item, int pos, long id) {
+                        launchEditItem(pos);
+                    }
+                }
+        );
+    }
+
+    public void launchEditItem(int pos) {
+        Intent i = new Intent(todosListActivity.this, EditTodoActivity.class);
+        i.putExtra("item", items.get(pos));
+        i.putExtra("position", "" + pos);
+        startActivityForResult(i, REQUEST_CODE);
     }
 
     private void readItems() {
@@ -95,6 +113,18 @@ public class todosListActivity extends ActionBarActivity {
             FileUtils.writeLines(todoFile, items);
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // REQUEST_CODE is defined above
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE) {
+            String itemText = data.getExtras().getString("item");
+            int itemPosition = Integer.parseInt(data.getExtras().getString("position"));
+            items.set(itemPosition, itemText);
+            itemsAdapter.notifyDataSetChanged();
+            writeItems();
         }
     }
 }
