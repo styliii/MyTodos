@@ -75,6 +75,7 @@ public class todosListActivity extends ActionBarActivity {
                     public boolean onItemLongClick(AdapterView<?> adapter, View item, int pos, long id) {
                         items.remove(pos);
                         itemsAdapter.notifyDataSetChanged();
+                        writeItems();
                         return true;
                     }
                 }
