@@ -1,4 +1,4 @@
-package com.styliii.mytodos;
+package com.styliii.mytodos.activities;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -7,20 +7,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
+
+import com.styliii.mytodos.R;
+import com.styliii.mytodos.models.TodoItem;
 
 
 public class EditTodoActivity extends ActionBarActivity {
-    String itemPosition;
+    int itemListIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_todo);
         EditText etEditItem = (EditText) findViewById(R.id.etEditItem);
-        String itemText = getIntent().getStringExtra("item");
-        itemPosition = getIntent().getStringExtra("position");
-        etEditItem.append(itemText);
+
+        itemListIndex = Integer.parseInt(getIntent().getStringExtra("listIndex"));
+        TodoItem todoItem = TodoItem.getByListIndex(itemListIndex);
+        etEditItem.append(todoItem.description);
     }
 
 
@@ -49,9 +52,11 @@ public class EditTodoActivity extends ActionBarActivity {
     public void onSaveItem(View v) {
         EditText etEditItem = (EditText) findViewById(R.id.etEditItem);
         String itemText = etEditItem.getText().toString();
+        TodoItem todoItem = TodoItem.getByListIndex(itemListIndex);
+        todoItem.description = itemText;
+        todoItem.save();
         Intent data = new Intent();
-        data.putExtra("item", itemText);
-        data.putExtra("position", itemPosition);
+        data.putExtra("listIndex", "" + itemListIndex);
         setResult(RESULT_OK, data);
         finish();
     }
