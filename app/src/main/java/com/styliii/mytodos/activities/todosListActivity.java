@@ -15,8 +15,11 @@ import com.styliii.mytodos.R;
 import com.styliii.mytodos.adapters.TodoItemAdapter;
 import com.styliii.mytodos.models.TodoItem;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
+import java.text.SimpleDateFormat;
+import java.text.DateFormat;
+import java.util.Date;
 
 public class todosListActivity extends ActionBarActivity {
     TodoItemAdapter todoAdapter;
@@ -66,15 +69,21 @@ public class todosListActivity extends ActionBarActivity {
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
+
+        EditText etDueDate = (EditText) findViewById(R.id.etDueDate);
+        String itemDueDate = etDueDate.getText().toString();
+
         int newTodoItemIndex = items.size();
 
         TodoItem todoItem = new TodoItem();
         todoItem.description = itemText;
         todoItem.listIndex = newTodoItemIndex;
+        todoItem.dueDate = itemDueDate;
         todoItem.save();
 
         todoAdapter.add(todoItem);
         etNewItem.setText("");
+        etDueDate.setText("");
     }
 
     private void setupListViewListener() {

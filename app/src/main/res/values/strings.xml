@@ -9,5 +9,6 @@
     <string name="title_activity_edit_todo">EditTodoActivity</string>
     <string name="editTodo">Edit Todo Below:</string>
     <string name="saveTodo">Save</string>
+    <string name="due_date">Due Date</string>
 
 </resources>

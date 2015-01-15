@@ -1,18 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/tvDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Study cursors"
-        android:textAppearance="?android:attr/textAppearanceLarge"/>
-    <TextView
-        android:id="@+id/tvListIndex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:text="3"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-</LinearLayout>
+    android:layout_height="wrap_content"
+    android:stretchColumns="*">
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_column="15"
+        android:measureWithLargestChild="false">
+        <TextView
+            android:id="@+id/tvDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Study cursors"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:layout_weight="0.70" />
+
+        <TextView
+            android:id="@+id/tvListIndex"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="3"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_weight="0.05"
+            android:gravity="center" />
+
+        <TextView
+            android:id="@+id/tvDueDate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="2/14/15"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:layout_weight="0.25"
+            android:gravity="end"
+            android:layout_marginLeft="5dp" />
+
+        </TableRow>
+</TableLayout>

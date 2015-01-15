@@ -10,25 +10,35 @@
         android:layout_height="wrap_content"
         android:text="@string/addTodo"
         android:id="@+id/btnAddItem"
-        android:layout_alignParentBottom="true"
         android:onClick="onAddItem"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/etNewItem"
-        android:layout_alignBottom="@+id/btnAddItem"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/btnAddItem"
-        android:hint="@string/newTodo"
-        android:layout_alignTop="@+id/btnAddItem" />
 
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lvItems"
-        android:layout_alignParentTop="true"
         android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_above="@+id/etNewItem" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/etNewItem"
+        android:hint="@string/newTodo"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/etDueDate"
+        android:layout_alignParentEnd="true"
         android:layout_above="@+id/btnAddItem" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="date"
+        android:ems="5"
+        android:id="@+id/etDueDate"
+        android:hint="@string/due_date"
+        android:layout_alignBottom="@+id/btnAddItem"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

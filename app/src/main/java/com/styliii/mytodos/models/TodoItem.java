@@ -9,6 +9,7 @@ import com.activeandroid.query.Select;
 
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -21,15 +22,19 @@ public class TodoItem extends Model{
     @Column(name = "ListIndex")
     public int listIndex;
 
+    @Column(name = "DueDate")
+    public String dueDate;
+
     // Make sure to have a default constructor for every ActiveAndroid model
     public TodoItem(){
         super();
     }
 
-    public TodoItem(String description, int listIndex ){
+    public TodoItem(String description, int listIndex, String dueDate ){
         super();
         this.description = description;
         this.listIndex = listIndex;
+        this.dueDate = dueDate;
     }
 
     public static TodoItem getByListIndex(int listIndex){

@@ -20,10 +20,12 @@ public class EditTodoActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_todo);
         EditText etEditItem = (EditText) findViewById(R.id.etEditItem);
+        EditText etEditItemDueDate = (EditText) findViewById(R.id.etEditItemDueDate);
 
         itemListIndex = Integer.parseInt(getIntent().getStringExtra("listIndex"));
         TodoItem todoItem = TodoItem.getByListIndex(itemListIndex);
         etEditItem.append(todoItem.description);
+        etEditItemDueDate.append(todoItem.dueDate);
     }
 
 
@@ -51,9 +53,12 @@ public class EditTodoActivity extends ActionBarActivity {
 
     public void onSaveItem(View v) {
         EditText etEditItem = (EditText) findViewById(R.id.etEditItem);
+        EditText etEditItemDueDate = (EditText) findViewById(R.id.etEditItemDueDate);
         String itemText = etEditItem.getText().toString();
+        String itemDueDate = etEditItemDueDate.getText().toString();
         TodoItem todoItem = TodoItem.getByListIndex(itemListIndex);
         todoItem.description = itemText;
+        todoItem.dueDate = itemDueDate;
         todoItem.save();
         Intent data = new Intent();
         data.putExtra("listIndex", "" + itemListIndex);
