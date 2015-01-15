@@ -11,6 +11,8 @@ A bare bones, simple todo app to stream line your life.  Followed CodePath's And
  - [x] Include ability to edit todo items
  - [x] Persist todo items and retrieve them properly on app restart
  - [x] Persist the todo items into SQLite instead of a text file
+ - [x] Improve style of the todo items in the list using a custom adapter
+ - [x] Add support for completion due dates for todo items and display within listview item
 
 ![app demo](./app_demo.gif)
 GIF created with [LiceCap](http://www.cockos.com/licecap/)
@@ -18,7 +20,5 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/)
 
 ## Notes
 Next items to work on:
- - [ ] Improve style of the todo items in the list using a custom adapter
- - [ ] Add support for completion due dates for todo items and display within listview item
  - [ ] Use a DialogFragment instead of new Activity for editing items
 
